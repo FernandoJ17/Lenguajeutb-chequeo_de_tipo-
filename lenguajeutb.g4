@@ -2,16 +2,16 @@ grammar lenguajeutb;
 
 start_rule: nombre_programa variables flujo;
 nombre_programa: NOMBRE_EJERCICIO NOMBRE_PRG;
-variables: VARIABLES declaracion+ FIN_VARIABLES;
+variables: VARIABLES declaracion* FIN_VARIABLES;
 declaracion: (TIPO (
-TIPO_ENTERO NOMBRE entero=IDENTIFICADOR VALOR_INICIAL v_entero=expresion
-| TIPO_REAL NOMBRE real=IDENTIFICADOR VALOR_INICIAL v_real=expresion
-| TIPO_TEXTO NOMBRE texto=IDENTIFICADOR VALOR_INICIAL v_texto=TEXTO
-| TIPO_BOOLEANO NOMBRE booleano=IDENTIFICADOR VALOR_INICIAL v_booleano=expresion
-| TIPO_LISTA_DE_ENTERO NOMBRE lista_entero=IDENTIFICADOR
-| TIPO_LISTA_DE_TEXTO NOMBRE lista_texto=IDENTIFICADOR
-| TIPO_LISTA_DE_REAL NOMBRE lista_real=IDENTIFICADOR
-| TIPO_LISTA_DE_BOOLEANO NOMBRE lista_booleano=IDENTIFICADOR
+TIPO_ENTERO NOMBRE entero=IDENTIFICADOR (VALOR_INICIAL v_entero=expresion)?
+| TIPO_REAL NOMBRE real=IDENTIFICADOR (VALOR_INICIAL v_real=expresion)?
+| TIPO_TEXTO NOMBRE texto=IDENTIFICADOR (VALOR_INICIAL v_texto=TEXTO)?
+| TIPO_BOOLEANO NOMBRE booleano=IDENTIFICADOR (VALOR_INICIAL v_booleano=expresion)?
+| LISTA DE TIPO_ENTERO NOMBRE lista_entero=IDENTIFICADOR
+| LISTA DE TIPO_TEXTO NOMBRE lista_texto=IDENTIFICADOR
+| LISTA DE TIPO_REAL NOMBRE lista_real=IDENTIFICADOR
+| LISTA DE TIPO_BOOLEANO NOMBRE lista_booleano=IDENTIFICADOR
 | TIPO_MATRIZ_DE_BOOLEANO NOMBRE matriz_booleano=IDENTIFICADOR
 | TIPO_MATRIZ_DE_TEXTO NOMBRE matriz_texto=IDENTIFICADOR
 | TIPO_MATRIZ_DE_ENTERO NOMBRE matriz_entero=IDENTIFICADOR
@@ -67,6 +67,7 @@ A               : 'a';
 LEER            : 'leer';
 TIPO            : 'tipo';
 
+
 TIPO_LISTA_DE_ENTERO: 'lista_de_entero';
 TIPO_LISTA_DE_REAL: 'lista_de_real';
 TIPO_LISTA_DE_BOOLEANO: 'lista_de_booleano';
@@ -77,6 +78,7 @@ TIPO_MATRIZ_DE_REAL: 'matriz_de_real';
 TIPO_MATRIZ_DE_BOOLEANO: 'matriz_de_booleano';
 TIPO_MATRIZ_DE_TEXTO: 'matriz_de_texto';
 
+LISTA:       'lista';
 TIPO_ENTERO: 'entero';
 TIPO_REAL: 'real';
 TIPO_BOOLEANO: 'booleano';

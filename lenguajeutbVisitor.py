@@ -28,13 +28,40 @@ class lenguajeutbVisitor(ParseTreeVisitor):
 
     def visitDeclaracion(self, ctx: lenguajeutbParser.DeclaracionContext):
         if ctx.entero is not None:
-            lenguajeutbVisitor.tabla_de_simbolos[ctx.entero.text] = int
+            resultado = None
+            for hijo in ctx.children:
+                resultado = self.visit(hijo)
+            if resultado == int:
+                lenguajeutbVisitor.tabla_de_simbolos[ctx.entero.text] = int
+            else:
+                raise ValueError
+
         elif ctx.real is not None:
-            lenguajeutbVisitor.tabla_de_simbolos[ctx.real.text] = int
+            resultado = None
+            for hijo in ctx.children:
+                resultado = self.visit(hijo)
+            if resultado == float:
+                lenguajeutbVisitor.tabla_de_simbolos[ctx.real.text] = float
+            else:
+                raise ValueError
+
         elif ctx.booleano is not None:
-            lenguajeutbVisitor.tabla_de_simbolos[ctx.booleano.text] = bool
+            resultado = None
+            for hijo in ctx.children:
+                resultado = self.visit(hijo)
+            if resultado == bool:
+                lenguajeutbVisitor.tabla_de_simbolos[ctx.booleano.text] = bool
+            else:
+                raise ValueError
+
         elif ctx.texto is not None:
-            lenguajeutbVisitor.tabla_de_simbolos[ctx.texto.text] = str
+            resultado = None
+            for hijo in ctx.children:
+                resultado = self.visit(hijo)
+            if resultado == str:
+                lenguajeutbVisitor.tabla_de_simbolos[ctx.texto.text] = str
+            else:
+                raise ValueError
 
         elif ctx.lista_entero is not None:
             lenguajeutbVisitor.tabla_de_simbolos[ctx.lista_entero.text] = ([], int)
@@ -65,6 +92,7 @@ class lenguajeutbVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by lenguajeutbParser#asignacion.
     def visitAsignacion(self, ctx: lenguajeutbParser.AsignacionContext):
+
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by lenguajeutbParser#ciclo_para.
@@ -190,5 +218,6 @@ class lenguajeutbVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by lenguajeutbParser#imprimir.
     def visitImprimir(self, ctx: lenguajeutbParser.ImprimirContext):
         return self.visitChildren(ctx)
+
 
 del lenguajeutbParser

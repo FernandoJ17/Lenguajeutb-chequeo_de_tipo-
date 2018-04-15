@@ -1,7 +1,8 @@
 Nombre_del_ejercicio tujeta
 variables
-    tipo booleano nombre $b valor_inicial FALSO
+    tipo real nombre $a valor_inicial 0.0
+
 fin_variables
 Flujo
-    mostrar_en_pantalla $b
+    mostrar_en_pantalla $a
 fin_flujo

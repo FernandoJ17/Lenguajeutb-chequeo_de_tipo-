@@ -1,4 +1,4 @@
-# Generated from C:/Users/juanp/PycharmProjects/lenguajeUTB\lenguajeutb.g4 by ANTLR 4.7
+# Generated from C:/Users/joroz/Documents/GitHub/Chequeo de Tipo/Lenguajeutb-chequeo_de_tipo-\lenguajeutb.g4 by ANTLR 4.7
 from antlr4 import *
 from io import StringIO
 from typing.io import TextIO
